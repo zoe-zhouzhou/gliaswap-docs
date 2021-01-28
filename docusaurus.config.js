@@ -6,8 +6,10 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/logo.svg',
-  organizationName: 'Glias', // Usually your GitHub org/user name.
+  organizationName: 'zoe-zhouzhou', // Usually your GitHub org/user name.
   projectName: 'gliaswap-docs', // Usually your repo name.
+  url: 'https://zoe-zhouzhou.github.io', // Your website URL
+  baseUrl: '/gliaswap-docs/',
   themeConfig: {
     navbar: {
       title: 'Gliaswap',
