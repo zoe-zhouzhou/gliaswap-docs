@@ -8,6 +8,15 @@ module.exports = {
         'start/intro',
       ],
     },
+    {
+      type: 'category',
+      label: 'Product',
+      items: [
+        'product/overview',
+        'product/fee',
+
+      ],
+    },
 
     {
       type: 'category',

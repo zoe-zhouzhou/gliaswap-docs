@@ -20,7 +20,7 @@ matcher_in_cell                         matcher_out_cell
 
 #### 3. Rule 3 - If this is a swap matching transaction, verify whether the data changes in the info cell is correct and corresponding to the actual increase or decrease in the amount of assets in the pool cell
 
-Notice：In pseudo code blow，total_liqidity is the LP token balance in info cell, and liquidity_sudt_type_hash is LP token type hash.
+Notice：In pseudo code blow，total_liqidity is the Liquidity token balance in info cell, and liquidity_sudt_type_hash is Liquidity token type hash.
 
 ```
 let info_in = inputs[0]
@@ -87,9 +87,9 @@ aggregator_in_cell                      aggregator_out_cell
 
 ```
 
-#### 6. Rules 6 - If this is initially adding liquidity, verify if minting the correct amount LP token for user, and verify if the data storaged in info cell and pool cell is correct.
+#### 6. Rules 6 - If this is initially adding liquidity, verify if minting the correct amount Liquidity token for user, and verify if the data storaged in info cell and pool cell is correct.
 
-Notice：In pseudo code blow，total_liqidity is the LP token balance in info cell, and liquidity_sudt_type_hash is LP token type hash.
+Notice：In pseudo code blow，total_liqidity is the Liquidity token balance in info cell, and liquidity_sudt_type_hash is Liquidity token type hash.
 
 ```
 
@@ -138,8 +138,8 @@ endfn
 ```
 
 #### 7. Rule 7 - If this is not initially adding liquidity, iterate through all request cell**
-* If it is add liquidity request cell, verify if minting the correct amount LP token for user, and add up the CKB amount, sUDT amount and LP token amount for verifying info cell and pool cell later.
-* If it is remove liquidity request cell, verify if withdraw the correct CKB amount and sudt amount for user, and add up the CKB amount, sUDT amount and LP token amount for verifying info cell and pool cell later.
+* If it is add liquidity request cell, verify if minting the correct amount Liquidity token for user, and add up the CKB amount, sUDT amount and Liquidity token amount for verifying info cell and pool cell later.
+* If it is remove liquidity request cell, verify if withdraw the correct CKB amount and sudt amount for user, and add up the CKB amount, sUDT amount and Liquidity token amount for verifying info cell and pool cell later.
 * Verify if the data storaged in info cell and pool cell is correct 
 
 ```

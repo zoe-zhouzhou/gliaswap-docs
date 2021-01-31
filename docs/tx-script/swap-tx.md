@@ -229,7 +229,7 @@ matcher_in_cell                         matcher_out_cell
 
 **Rule 3 - If this is a swap matching transaction, verify whether the data changes in the info cell is correct and corresponding to the actual increase or decrease in the amount of assets in the pool cell**
 
-Notice：In pseudo code blow，total_liqidity is the LP token balance in info cell, and liquidity_sudt_type_hash is LP token type hash.
+Notice：In pseudo code blow，total_liqidity is the Liquidity token balance in info cell, and liquidity_sudt_type_hash is Liquidity token type hash.
 
 ```
 let info_in = inputs[0]

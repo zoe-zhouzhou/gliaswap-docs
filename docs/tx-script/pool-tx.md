@@ -17,7 +17,7 @@ In pool page，when Liquidity Providers（LPs) mananger their liquidity, 5 types
 Creat a pool in Gliaswap is permissionless. In the first version, Gliaswap only support to creat sudt/CKB pool. 
 
 Creat a pool actually is to creat two cell: 
-* info cell used to store pool info, including reserve balance, LP token balance and other ID info to indentify the pool
+* info cell used to store pool info, including reserve balance, Liquidity token balance and other ID info to indentify the pool
 * pool cell used to store the real asset, including CKB and sudt
 
 ```
@@ -110,7 +110,7 @@ Notice that this transaction only validates regular SUDT rules constrained in su
 
 ## 3. LPs submit remove liquidity request
 
-If a LP want to remove liquidity from a pool, he/she needs to submit a remove liquidity request firstly. For example，Bob want to burn L LP token and withdraw the 
+If a LP want to remove liquidity from a pool, he/she needs to submit a remove liquidity request firstly. For example，Bob want to burn L Liquidity token and withdraw the 
 
 ```
 Input
@@ -118,9 +118,9 @@ Input
         capacity
             <235 + tx fee>
         data
-            LP token amount: N
+            Liquidity token amount: N
         type
-            <LP token type>
+            <Liquidity token type>
         lock
             <user's lock>
         
@@ -129,9 +129,9 @@ Output
         capacity: 
             235
         data: 
-            LP token amount: L
+            Liquidity token amount: L
         type: 
-            <LP token type>
+            <Liquidity token type>
         lock:
             code: LIQUIDITY_REQ_LOCK_CODE_HASH 
             args: user_lock_hash | version | sudtMin | ckbMin | info_type_hash_32 | 0 | 0 | // tip and tip fee are 0 in current version
@@ -176,9 +176,9 @@ Input
         capacity: 
             235
         data: 
-            LP token amount: l
+            Liquidity token amount: l
         type: 
-            <LP token type>
+            <Liquidity token type>
         lock:
             code: LIQUIDITY_REQ_LOCK_CODE_HASH 
             args: user_lock_hash | version | sudtMin | ckbMin | info_type_hash_32 | 0 | 0 | // tip and tip fee are 0 in current version
@@ -232,7 +232,7 @@ Output
         lock:
             <Bob normal lock>
         
-     Alice LP token cell    
+     Alice Liquidity token cell    
         capacity: 
             142
         data: 
@@ -270,9 +270,9 @@ aggregator_in_cell                      aggregator_out_cell
 
 ```
 
-**Rules 6 - If this is initially adding liquidity, verify if minting the correct amount LP token for user, and verify if the data storaged in info cell and pool cell is correct.**
+**Rules 6 - If this is initially adding liquidity, verify if minting the correct amount Liquidity token for user, and verify if the data storaged in info cell and pool cell is correct.**
 
-Notice：In pseudo code blow，total_liqidity is the LP token balance in info cell, and liquidity_sudt_type_hash is LP token type hash.
+Notice：In pseudo code blow，total_liqidity is the Liquidity token balance in info cell, and liquidity_sudt_type_hash is Liquidity token type hash.
 
 ```
 
@@ -321,8 +321,8 @@ endfn
 ```
 
 **Rule 7 - If this is not initially adding liquidity, iterate through all request cell**
-* If it is add liquidity request cell, verify if minting the correct amount LP token for user, and add up the CKB amount, sUDT amount and LP token amount for verifying info cell and pool cell later.
-* If it is remove liquidity request cell, verify if withdraw the correct CKB amount and sudt amount for user, and add up the CKB amount, sUDT amount and LP token amount for verifying info cell and pool cell later.
+* If it is add liquidity request cell, verify if minting the correct amount Liquidity token for user, and add up the CKB amount, sUDT amount and Liquidity token amount for verifying info cell and pool cell later.
+* If it is remove liquidity request cell, verify if withdraw the correct CKB amount and sudt amount for user, and add up the CKB amount, sUDT amount and Liquidity token amount for verifying info cell and pool cell later.
 * Verify if the data storaged in info cell and pool cell is correct 
 
 ```
@@ -494,7 +494,7 @@ return success
 
 ### Info lock script
 
-[Rule 1](./swap-contract##info-lock-script)
+[Rule 1](./swap-tx##info-lock-script)
 
 ### Liquidity request lock script
 
@@ -528,9 +528,9 @@ Input
         capacity: 
             235
         data: 
-            LP token amount: L
+            Liquidity token amount: L
         type: 
-            <LP token type>
+            <Liquidity token type>
         lock:
             code: LIQUIDITY_REQ_LOCK_CODE_HASH 
             args: user_lock_hash | version | sudtMin | ckbMin | info_type_hash_32 | 0 | 0 | // tip and tip fee are 0 in current version
@@ -542,9 +542,9 @@ Output
         capacity
             <235>
         data
-            LP token amount: N
+            Liquidity token amount: N
         type
-            <LP token type>
+            <Liquidity token type>
         lock
             <user's lock>
 
