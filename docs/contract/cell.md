@@ -26,20 +26,22 @@ Liquidity request cell is used for add liquidity to liquidity pool or remove liq
 }
 ```
 
-**Filed description :**
+**Filed description :** (total size: 235 bytes)
 
-- capacity: The size is 8 bytes. 
-- data: The size is 16 bytes. `sudt_amount` uses little endian. 
-- type script: The size is 65 bytes. When adding liquidity, the type script is `asset_sudt_type`. When removing liquidity, the type script is `liquidity_sudt_type`.  
-- lock script: The length is 146 bytes. 
-  - `LIQUIDITY_REQ_LOCK_CODE_HASH`  is 32 bytes. 
-  - `user_lock_hash`  is 32  bytes.
-  - `version` is u8. 
-  - `sudtMin` is u128, using little endian. When it is initial liquidity, `sudtMin` has no meaning. When adding liquidity, `sudtMin` means minimum amount of CKB that could be used to add liquidity. While removing liquidity, `sudtMin` means minimum amount of sUDT that could be removed when LP token runs out.
-  - `ckbMin` is uint64,  using little endian. When it is initial liquidity,  `ckbMin`  has no meaning. When adding liquidity, `ckbMin`  means minimum amount of CKB that could be used to add liquidity. While removing liquidity, `ckbMin` means minimum amount of CKB  that could be removed when LP token runs out.
-  - `info_type_hash_32` is 32 bytes.
-  - `tips` is 8 bytes and represents the amount of CKB that user pay to miner and aggregator.
-  - `tips_sudt` is 16 bytes and represents the amount of sUDT that user pay to  aggregator.
+- `capacity`(size: 16 bytes)
+- `data`(size: 16 bytes, byte order: little endian) 
+- `type script`(size: 65 bytes):  When adding liquidity, the type script is `asset_sudt_type`. When removing liquidity, the type script is `liquidity_sudt_type`.  
+- `lock script`(size: 146 bytes)
+  - `code_hash` (size: 32 bytes): `LIQUIDITY_REQ_LOCK_CODE_HASH`
+  - `args`: 
+    - `user_lock_hash` (size: 32  bytes)
+    - `version` (type: uint 8, size: 1 byte)
+    - `sudtMin` (type: uint 128, size: 16 bytes,  byte order: little endian) : When it is initial liquidity, `sudtMin` has no meaning. When adding liquidity, `sudtMin`  represents the minimum amount of CKB that could be used to add liquidity. While removing liquidity, `sudtMin` represents the minimum amount of sUDT that could be removed when LP token runs out.
+    - `ckbMin` (type: uint 64, size: 8 bytes, byte order: little endian):  When it is initial liquidity,  `ckbMin`  has no meaning. When adding liquidity, `ckbMin`  means minimum amount of CKB that could be used to add liquidity. While removing liquidity, `ckbMin` means minimum amount of CKB  that could be removed when LP token runs out.
+    - `info_type_hash_32` (size: 32 bytes)
+    - `tips`(size: 8 bytes):  The amount of CKB that user pay to miner and aggregator.
+    - `tips_sudt`(size: 16 bytes): The amount of sUDT that user pay to  aggregator.
+  - `hash_type` (size: 1 byte)
 
 
 
@@ -61,18 +63,20 @@ Swap request cell is used for selling or buying asset.
 }
 ```
 
-**Filed description :**
+**Filed description :** (total size: 235 bytes)
 
-- capacity: The size is 8 bytes. 
-- data: The size is 16 bytes. When selling sudt, the filed is `sudt_amount` . When buying sudt, the filed is null.
-- type script: The size is 65 bytes.  When selling sudt, the filed is `sudt_type` . When buying sudt, the filed is null. 
-- lock script: The length is 146 bytes. 
-  - `SWAP_REQ_LOCK_CODE_HASH`  is 32 bytes.
-  - `user_lock_hash` is 32 bytes.
-  - `version` is u8.
-  - `amountOutMin` is u128 and has a size of 16 bytes. `amountOutMin`  represents the minimum amount of tokens that trader can redeem. For example, when using sUDT to exchange for CKB, the `amountOutMin`  is the minimum amount of the redeemed CKB, not the minimum capacity of all cell.
-  - `tips` is 8 bytes and represents the amount of CKB that user pay to miner and aggregator.
-  - `tips_sudt` is 16 bytes and represents the amount of sUDT that user pay to  aggregator.
+- `capacity`(size: 8 bytes)
+- `data`(size: 16 bytes):  When selling sudt, `data` should be `sudt_amount` . When buying sudt, `data` should be null.
+- `type script` (size: 65 bytes):  When selling sudt, `type script` should be `sudt_type` . When buying sudt, `type script` should be  null. 
+- `lock script` (size: 146 bytes) 
+  - `code_hash` (size: 32 bytes): `SWAP_REQ_LOCK_CODE_HASH` 
+  - `args`:
+    - `user_lock_hash` (size: 32 bytes)
+    - `version` (type: uint 8, size: 1 byte)
+    - `amountOutMin` (type: uint 128, size: 16 bytes):  `amountOutMin`  represents the minimum amount of tokens that trader can redeem. For example, when using sUDT to exchange for CKB, the `amountOutMin`  should be the minimum amount of the redeemed CKB, not the minimum capacity of all cell.
+    - `tips` (size: 8 bytes):  The amount of CKB that user pay to miner and aggregator.
+    - `tips_sudt`(size: 16 bytes): The amount of sUDT that user pay to  aggregator.
+  - `hash_type` (size: 1 byte)
 
 
 
@@ -102,23 +106,24 @@ Info cell represents the current state of liquidity pool.
 }
 ```
 
-**Filed description :**
+**Filed description :**（total size: 250 bytes) 
 
-- capacity: The size is 8 bytes. 
-- data: The size is 80 bytes. 
-  - `ckb_reserve` is u128 , 16 bytes.
-  - `sudt_reserve` is u128.
-  - `total_liquidity` is u128.
-  - `liquidity_sudt_type_hash` has a size of 32 bytes.
-- type script: The size is 65 bytes.  
-  - `INFO_TYPE_CODE_HASH` is 32 bytes.
-  - `id` is 32 bytes.
-  - `hash_type` is 1 byte.
-- lock script: The size is 97 bytes. 
-  - `INFO_LOCK_CODE_HASH` is 32 bytes.
-  - `hash(ckb | asset_sudt_type_hash)` is 32 bytes.
-  - `info_type_hash` is 32 bytes.
-  - `hash_type` is 1 byte.
+- `capacity`(size: 8 bytes)
+- `data` (size : 80 bytes)
+  - `ckb_reserve`(type: u128, size: 16 bytes) ：Total remaining amount of CKB  in the liquidity pool. 
+  - `sudt_reserve`(type: u128, size: 16 bytes):  Total remaining amount of sUDT in the liquidity pool. 
+  - `total_liquidity` (type: u128, size: 16 bytes): Total remaining amount of liquidity token in the liquidity pool. 
+  - `liquidity_sudt_type_hash` (size: 32 bytes):  This filed represent the sUDT type in liquidity pool. 
+- `type script`(size: 65 bytes）
+  - `code_hash` (size: 32 bytes): `INFO_TYPE_CODE_HASH`
+  - `args`(size: 32 bytes):   `id`  =  `TypeId ` used in CKB protocol.
+  - `hash_type` (size: 1 byte)
+- `lock script` (size: 97 bytes）
+  - `code_hash` (size: 32 bytes):  `INFO_LOCK_CODE_HASH` 
+  - `args`(size: 32 bytes):
+    - `hash(ckb | asset_sudt_type_hash)`(size: 32 bytes):  Make indexing easier.
+    - `info_type_hash` (size: 32 bytes): To make sure the unlocked pool is correct.
+  - `hash_type` (size: 1 byte)
 
 
 
@@ -135,21 +140,21 @@ Pool cell is used for fund custody.
 }
 ```
 
-**Filed description :**
+**Filed description :** （total size: 186 bytes) 
 
-- capacity: The size is 8 bytes. 
+- `capacity`  (size: 8 bytes)
 
-- data: The size is 16 bytes.
+- `data`(size: 16 bytes) : The amount of sUDT in liquidity pool.
 
-- type script: The size is 65 bytes.
+- `type script` (size: 65 bytes) : sUDT type.
 
-- lock script: The size is 97 bytes. 
+- `lock script` (size: 97 bytes): Info lock.
 
   
 
 ## sUDT Cell
 
-There are two kinds of sUDT involved in transactions. One is as `asset sudt` in liquidity pool portfolio. The other is  `liquidity sudt` used in liquidity operations. As shown below, both are common  types of sUDT .
+There are two kinds of sUDT involved in transactions. One is as `asset sudt` in liquidity pool asset portfolio. The other is  `liquidity sudt` used in liquidity operations. As shown below, both are common  types of sUDT.
 
 ```
 {
@@ -163,10 +168,12 @@ There are two kinds of sUDT involved in transactions. One is as `asset sudt` in 
 }
 ```
 
-**Filed description :**
+**Filed description :** （total size: 154 bytes) 
 
-- capacity: The size is 8 bytes. 
-- data: `amount`is u128, 16 bytes.
-- type script: The size is 65 bytes.
-- lock script
+- `capacity`  (size: 8 bytes)
+- `data`(type: uint 128, size: 16 bytes): The amount of sUDT.
+- `type script` (size: 65 bytes)
+  - `code_hash`: `sudt_type_script`
+  - `args`:  `owner_lock_hash` 
+- `lock script `(size: 65 bytes) : `user_lock`
 
