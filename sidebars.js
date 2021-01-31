@@ -14,8 +14,8 @@ module.exports = {
       items: [
         'product/overview',
         'product/fee',
-
       ],
+      collapsed: false,
     },
 
     {
@@ -36,6 +36,7 @@ module.exports = {
           collapsed: false,
         },
       ],
+      collapsed: false,
     },
   ]
 
