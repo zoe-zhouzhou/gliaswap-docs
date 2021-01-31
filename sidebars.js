@@ -11,16 +11,21 @@ module.exports = {
 
     {
       type: 'category',
-      label: 'Contract',
+      label: 'Protocol',
       items: [
-        'contract/cell',
+        'tx-script/cell',
         {
           type: 'category',
           label: 'Transaction Structure',
-          items:['contract/swap-tx', 'contract/add-tx', 'contract/remove-tx'],
+          items:['tx-script/swap-tx', 'tx-script/pool-tx'],
           collapsed: false,
         },
-        'contract/script',
+        {
+          type: 'category',
+          label: 'Script',
+          items:['tx-script/info-type-script', 'tx-script/info-lock-script', 'tx-script/swap-lock-script','tx-script/liquidity-lock-script',],
+          collapsed: false,
+        },
       ],
     },
   ]

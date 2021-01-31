@@ -9,7 +9,7 @@ module.exports = {
   organizationName: 'zoe-zhouzhou', // Usually your GitHub org/user name.
   projectName: 'gliaswap-docs', // Usually your repo name.
   url: 'https://zoe-zhouzhou.github.io', // Your website URL
-  baseUrl: '/gliaswap-docs/GIT_USER=<GITHUB_USERNAME> yarn deploy',
+  baseUrl: '/gliaswap-docs/',
   themeConfig: {
     navbar: {
       title: 'Gliaswap',

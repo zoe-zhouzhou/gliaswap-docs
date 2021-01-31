@@ -1,4 +1,0 @@
----
-id: script
-title: Script
----
