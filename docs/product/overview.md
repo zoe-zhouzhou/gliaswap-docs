@@ -27,7 +27,7 @@ Traders --------> Relayer ------------------> Aggragators ----------------------
                                                               off-chain 
 ```
 
-* Gliaswap also support user to cross their Ethereum asset to Nervos or cross back. User only need to sign one tx to lock their assets or burn their assets, relayer will help them finish all the rest operation.
+* Gliaswap also support user to cross their Ethereum asset to Nervos or cross back. Users only need to sign one tx to lock their assets or burn their assets, relayer will help them finish all the rest operation.
 
 ```text
         lock ETH            mint ckETH for Alice         
