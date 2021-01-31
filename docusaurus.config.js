@@ -25,7 +25,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/glias',
           label: 'GitHub',
           position: 'right',
         },
