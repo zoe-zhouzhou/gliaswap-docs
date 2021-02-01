@@ -135,7 +135,10 @@ Pool cell is used for fund custody.
 {
   "capacity": -,
   "data": sudt_amount,
-  "type": sudt_type,
+  "type": {
+  	"code_hash": sudt_type_script,
+  	"args": owner_lock_hash,
+  }
   "lock": info_lock,
 }
 ```
@@ -146,9 +149,12 @@ Pool cell is used for fund custody.
 
 - `data`(size: 16 bytes) : The amount of sUDT in liquidity pool.
 
-- `type script` (size: 65 bytes) : sUDT type.
+- `type script`(size: 65 bytes)
 
-- `lock script` (size: 97 bytes): Info lock.
+  - `code_hash`:  In CKB standard, the type script of different sUDT is fixed (a.k.a. `sudt_type_script`), and different sUDT assets are distinguished by different `args`. 
+  - `args`: According to the sUDT standard,  `args` is usually  `owner_lock_hash` provided by the sUDT issuer. 
+
+- `lock script` (size: 97 bytes):   reuse the `lock` filed of Info Cell
 
   
 
@@ -173,7 +179,7 @@ There are two kinds of sUDT involved in transactions. One is as `asset sudt` in 
 - `capacity`  (size: 8 bytes)
 - `data`(type: uint 128, size: 16 bytes): The amount of sUDT.
 - `type script` (size: 65 bytes)
-  - `code_hash`: `sudt_type_script`
-  - `args`:  `owner_lock_hash` 
+  - `code_hash`:  In CKB standard, the type script of different sUDT is fixed (a.k.a. `sudt_type_script`), and different sUDT assets are distinguished by different `args`.
+  - `args`: According to the sUDT standard,  `args` is usually  `owner_lock_hash` provided by the sUDT issuer.
 - `lock script `(size: 65 bytes) : `user_lock`
 
