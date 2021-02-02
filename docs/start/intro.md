@@ -7,7 +7,9 @@ slug: /
 
 ## What is Gliaswap?
 
-Gliaswap is a AMM DEX on Nervos, designed for multi-chain assets swap. You can swap your cryptocurrencies, while you can also be an automated liquidity provider to earn trade fees on Gliaswap. And the most special on Gliaswap, we do not have a centralized matching contract or parties, so anyone can be a aggregator. Simply install a aggregator software, then you can start to gain risk-free profit by collecting trade fees.
+Gliaswap is an open-source AMM DEX template for Nervos. It's a complete production-ready DEX implementation including on-chain smart contracts and off-chain components. So anyone is welcome to fork, modify and deploy their own version.
+
+On Gliaswap, you can swap your cryptocurrencies, while you can also be an automated liquidity provider to earn trade fees on Gliaswap. And the most special on Gliaswap, we do not have a centralized matching contract or parties, so anyone can be a aggregator. Simply install a aggregator software, then you can start to gain risk-free profit by collecting trade fees.
 
 There is one magic thing that Gliaswap is able to run in Ethereum wallet although it is a Dapp on Nervos. Powered by pw-sdk, you can directly connect your existing Ethereum Wallet on Gliaswap instead of installing a Nervos exclusive wallet. And Gliaswap operates in a non-custodial manner which only works as a user-interface to help people assemble transactions. You as a user on Gliaswap will totally control your assets and trade freely.
 
