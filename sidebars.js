@@ -38,6 +38,13 @@ module.exports = {
       ],
       collapsed: false,
     },
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'ref/faq',
+      ],
+    },
   ]
 
 };
