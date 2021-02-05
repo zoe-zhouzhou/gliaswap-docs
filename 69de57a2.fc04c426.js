@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[17],{86:function(a){a.exports=JSON.parse('{"allTagsPath":"/gliaswap-docs/blog/tags","slug":"hello","name":"hello","count":2,"permalink":"/gliaswap-docs/blog/tags/hello"}')}}]);
