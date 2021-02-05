@@ -24,14 +24,14 @@ Gliaswap operates in a non-custodial manner which means that you trade directly 
 
 On Gliaswap, just connect the wallets and enjoy the free trade!
 
-### How do I get Test Token so I can start trading？
+### How do I get Test Token so I can start trading?
 
 You can get some Test Token from [Gliaswap Testnet](https://gliaswap-faucet.ckbapp.dev/).
 
 ## Swap
 
-### Why lock my addtional CKB when I make a swap？
+### Why lock my addtional CKB when I make a swap?
 
-When you try to make a swap, you will see a notion in review pages about " Placing this order will addtional lock you ** CKB". 
+When you try to make a swap, you will see a notion in review pages about "Placing this order will addtional lock you ** CKB". 
 
 Don't worry, these CKB are not used to pay for any fees or transfered to any third pairties. These CKB are only used to host the request cell you are submitting on chain, and after the swap is completed or canceled, these CKB will be back to your wallet.  
