@@ -9,17 +9,15 @@ slug: /
 
 Gliaswap is an open-source AMM DEX template for Nervos. It's a complete production-ready DEX implementation including on-chain smart contracts and off-chain components. So anyone is welcome to fork, modify and deploy their own version.
 
-On Gliaswap, you can swap your cryptocurrencies, while you can also be an automated liquidity provider to earn trade fees on Gliaswap. And the most special on Gliaswap, we do not have a centralized matching contract or parties, so anyone can be a aggregator. Simply install a aggregator software, then you can start to gain risk-free profit by collecting trade fees.
+Gliaswap provide basic functionality of a AMM DEX. Users can swap your cryptocurrencies, while Users also can be an automated liquidity provider to earn trade fees on Gliaswap. 
 
-There is one magic thing that Gliaswap is able to run in Ethereum wallet although it is a Dapp on Nervos. Powered by pw-sdk, you can directly connect your existing Ethereum Wallet on Gliaswap instead of installing a Nervos exclusive wallet. And Gliaswap operates in a non-custodial manner which only works as a user-interface to help people assemble transactions. You as a user on Gliaswap will totally control your assets and trade freely.
-
-And most importantly, Gliaswap also supports one-step cross-chain swaps between Ethereum and CKB which means you only need to sign once when trading your ETH to CKB. This works in a decentralized way with the help of Force Bridge cross-chain protocol. Imagine how magic it is, just connect your Metamask on Gliaswap, and you can use your ETH to buy CKB in one trade!
+Gliaswap also works as a demonstration of [Universal App built on Nervos](https://www.nervos.org/) that allows users to trade CKB for ETH with only one wallet. This trade on Gliaswap means a user can choose their preferred wallet and still cross chains for different assets.
 
 ## Why Gliaswap?
 
 * Gliaswap can supports many mainstream wallets built specially for the other chain, including all kinds of Ethereum Wallets, Tron Wallets and so on. Currently, Gliaswap supports several Ethereum wallets and we are actively working on more wallets.
 
-* You can use your ETH to buy CKB in one transaction. Of course, not only ETH.
+* Users can choose their preferred wallet and still cross chains for different assets. Such as, users can connect their Metamask, and using ETH to buy CKB by sending only one transaction.
 
 * Off-chain match / on-chain verify mechanism, which largely improves the throughput.
 
@@ -29,21 +27,21 @@ And most importantly, Gliaswap also supports one-step cross-chain swaps between 
 
 ### As a trader
 
-* You can use ETH assets to buy CKB assets in one transaction
+* Trader can use Ethereum assets to buy CKB assets by sending one transaction
 
-* You can trade CKB assets freely
+* Trader can trade Nervos assets freely
 
-* You can cross your ETH assets to Nervos 
+* Trader can cross your ETH assets to Nervos 
 
 ### As a LP
 
-* You can create a pool with your own tokens
+* LP can create a pool with your own tokens
 
-* You can earn profit by providing liquidity
+* LP can earn profit by providing liquidity
 
 ### As a Aggregator
 
-* You can earn profit by matching request with pool
+* Aggregator can earn profit by matching request with pool
 
 
 

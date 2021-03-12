@@ -25,7 +25,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/gliasgi',
+          href: 'https://github.com/gliaswap',
           label: 'GitHub',
           position: 'right',
         },
