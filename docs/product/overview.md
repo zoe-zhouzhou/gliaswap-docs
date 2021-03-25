@@ -5,6 +5,26 @@ title: Gliaswap Overview
 
 ![overview](../../static/img/overview.png)
 
+## What can I do with Gliaswap?
+
+### As a trader
+
+* Trader can use Ethereum assets to buy CKB assets by sending one transaction
+
+* Trader can trade Nervos assets freely
+
+* Trader can cross your ETH assets to Nervos 
+
+### As a Liquidity Provider（LP)
+
+* LP can create a pool 
+
+* LP can earn profit by providing liquidity
+
+### As an Aggregator
+
+* Aggregator can earn profit by matching request with pool
+
 ## Network Actors
 
 ### Trader

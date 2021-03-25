@@ -14,7 +14,7 @@ info_in_cell                            info_out_cell
 pool_in_cell                            pool_out_cell
                           ------->
 matcher_in_cell                         matcher_out_cell
-[swap_request_cell]                     [sudt_cell或者ckb_cell]
+[swap_request_cell]                     [sudt_cell or ckb_cell]
 
 ```
 
@@ -92,7 +92,6 @@ aggregator_in_cell                      aggregator_out_cell
 Notice：In pseudo code blow，total_liqidity is the Liquidity token balance in info cell, and liquidity_sudt_type_hash is Liquidity token type hash.
 
 ```
-
 let info_in = inputs[0]
 let pool_in = inputs[1]
 let matcher_in = inputs[2]
@@ -137,7 +136,7 @@ fn verify_genesis_add_liquidity()
 endfn
 ```
 
-#### 7. Rule 7 - If this is not initially adding liquidity, iterate through all request cell**
+#### 7. Rule 7 - If this is not initially adding liquidity, iterate through all request cell
 * If it is add liquidity request cell, verify if minting the correct amount Liquidity token for user, and add up the CKB amount, sUDT amount and Liquidity token amount for verifying info cell and pool cell later.
 * If it is remove liquidity request cell, verify if withdraw the correct CKB amount and sudt amount for user, and add up the CKB amount, sUDT amount and Liquidity token amount for verifying info cell and pool cell later.
 * Verify if the data storaged in info cell and pool cell is correct 
@@ -166,7 +165,7 @@ fn verify_add_liquidity()
       let sudt_injected = BigUint::from(req.data.amount)
       let ckb_injected = BigUint::from(req.capacity - SUDT_CAPACITY - change.capacity) // SUDT_CAPACITY for liquidity cell
 
-      if ckb_injected != (sudt_injected * ckb_reserve / sudt_reserve) + 1
+      if ckb_injected != (sudt_injected * ckb_reserve / sudt_injected) + 1
           return fail
 
       // Check ckb_injected > min_ckb_injected

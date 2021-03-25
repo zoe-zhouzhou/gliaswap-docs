@@ -166,56 +166,15 @@ Output
 
 In this transaction, three types of script will be run to verify the tx:
 
-### Swap request lock script
+### Swap request lock script - rule 1
 
-**Rule 1 - verifity if the actual pay amount and receive amount satisfy the request amount in swap request cell.**
+Rule 1 - verifity if the actual pay amount and receive amount satisfy the request amount in swap request cell.
 
-```
-let pool = inputs[1]
-for order in group_inputs[..] // QueryIter::new(load_input, Source::GroupInput).collect()
-  let order = inputs[order_index_in_inputs]
-  let output = outputs[order_index_in_inputs]
+### Info type script - rule 1/rule 2/rule 3
 
-  let user_lock_hash = order.lock.args[0..32]
-  let amount_in = BigUint::from(order.lock.args[33..49])
-  let min_amount_out = BigUint::from(order.lock.args[49..65])
-  let order_type = order.lcok.args[65..66]
+Rule 1 - [TypeID rules](https://github.com/nervosnetwork/ckb/blob/master/script/src/type_id.rs)
 
-  if output.lock_hash != user_lock_hash
-      return fail
-  if amount_in == 0
-      return fail
-
-  if order_type == SellCKB
-      if output.type_hash != pool.type_hash
-          return fail
-
-      if order.capacity <= output.capacity
-          || order.capacity - output.capacity != amount_in
-          return fail
-
-      if output.data.sudt_amount < min_amount_out
-          return fail
-  else if order_type == BuyCKB
-      if output.type_hash.is_some()
-          return fail
-
-      if output.capacity < order.capacity + min_amount_out
-          return fail
-
-      if output.data.size != 0
-          return fail
-  else
-      return fail
-  fi
-endfor
-```
-
-### Info type script
-
-**Rule 1 - [TypeID rules](https://github.com/nervosnetwork/ckb/blob/master/script/src/type_id.rs)**
-
-**Rule 2 - If this is a matching swap transaction, the cell sequence in this tx should follow the rules blow:**
+Rule 2 - If this is a matching swap transaction, the cell sequence in this tx should follow the rules blow:
 
 ```text
 
@@ -223,67 +182,15 @@ info_in_cell                            info_out_cell
 pool_in_cell                            pool_out_cell
                           ------->
 matcher_in_cell                         matcher_out_cell
-[swap_request_cell]                     [sudt_cell或者ckb_cell]
+[swap_request_cell]                     [sudt_cell or ckb_cell]
 
 ```
 
-**Rule 3 - If this is a swap matching transaction, verify whether the data changes in the info cell is correct and corresponding to the actual increase or decrease in the amount of assets in the pool cell**
+Rule 3 - If this is a swap matching transaction, verify whether the data changes in the info cell is correct and corresponding to the actual increase or decrease in the amount of assets in the pool cell
 
-Notice：In pseudo code blow，total_liqidity is the Liquidity token balance in info cell, and liquidity_sudt_type_hash is Liquidity token type hash.
+### Info lock script - rule 1
 
-```
-let info_in = inputs[0]
-let pool_in = inputs[1]
-let info_out = outputs[0]
-let pool_out = outputs[1]
-
-if info_out.capacity != INFO_CAPACITY
-    || info_out.data.total_liquidity != info_in.data.total_liquidity
-    return fail
-
-let ckb_got = BigInt::from(info_out.data.ckb_reserve) - info_in.data.ckb_reserve
-let sudt_got = BigInt::from(info_out.data.sudt_reserve) - info_in.data.sudt_reserve
-
-let ckb_reserve = info_in.data.ckb_reserve
-let sudt_reserve = info_in.data.sudt_reserve
-
-if ckb_got > 0 && sudt_got < 0 // tx buy sudt
-    let sudt_paid = info_in.data.sudt_reserve - info_out.data.sudt_reserve
-
-    if ckb_got != (1000 * ckb_reserve * sudt_paid) / (997 * (sudt_reserve - sudt_paid))
-        return fail
-else if ckb_got < 0 && sudt_got > 0 // tx sell sudt
-    let ckb_paid = info_in.data.ckb_reserve - info_out.data.ckb_reserve
-
-    if sudt_got != (1000 * sudt_reserve * ckb_paid) / (997 * (ckb_reserve - ckb_paid))
-        return fail
-else
-    return fail
-fi
-
-if pool_out.capacity != pool_in.capacity + ckb_got
-    || pool_out.data.amount != pool_in.data.amount + sudt_got
-    return fail
-
-return success
-```
-
-### Info lock script
-
-**Rules 1 - Verify if lock.args is consistent with info type**
-
-```
-if count(self.lock.group_inputs) != 2
-    return fail
-
-let info = group_inputs[0]
-let pool = group_inputs[1]
-if hash(ckb | pool.type_hash) != self.lock.args[0..32]
-    || info.type_hash != self.lock.args[32..64]
-    return fail
-
-return success
-```
+Rules 1 - Verify if lock.args is consistent with info type
 
 ## 3. Traders can cancel their own swap request
 
@@ -321,15 +228,6 @@ Outputs:
 
 This transaction leads to another rule of swap request lock script
 
-### Swap request lock script
+### Swap request lock script - rule 2
 
-**Rule2 - If one of input cell in the transaction use user's lock specified in liquidity request cell args and the corresponding witness is not 0, unlock the request cell directly.**
-
-```
-let user_lock_hash = self.lock.args[0..32]
-if one_of(input.lock_hash) == user_lock_hash
-    // Check witness for anyone can pay lock compatibility
-    let witness = load_witness_args(this_lock_index, Source::Input).unwrap()
-    if witness.total_size() != 0
-        return success
-```
+Rule2 - If one of input cell in the transaction use user's lock specified in liquidity request cell args and the corresponding witness is not 0, unlock the request cell directly.
