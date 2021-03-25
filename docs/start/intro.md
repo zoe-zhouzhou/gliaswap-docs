@@ -5,6 +5,8 @@ sidebar_label: Introduction
 slug: /
 ---
 
+import CardGrid from "@site/components/CardGrid"
+
 ## What is Gliaswap?
 
 Gliaswap is an open-source AMM DEX template for Nervos. It's a complete production-ready DEX implementation including on-chain smart contracts and off-chain components. So anyone is welcome to fork, modify and deploy your version.
@@ -25,13 +27,18 @@ Gliaswap also works as a demonstration of [Universal App built on Nervos](https:
 
 ## Guide
 
-1. Run gliaswap on your own server
+### ![](../../static/img/user.svg) User
 
-2. Learn the product feature of Gliaswap
+1. Using Gliaswap APP
+2. [Learn the product design](./product/overview)
 
-3. Diving into the scripts' design and code
+### ![](../../static/img/dev.svg) Developer
 
+1. [Run gliaswap on your own server](./run/run)
 
+2. [Learn the product design of Gliaswap](./product/overview)
+
+3. [Diving into the scripts' design and code](./tx-script/cell)
 
 
 
