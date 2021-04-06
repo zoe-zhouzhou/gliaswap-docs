@@ -8,7 +8,7 @@ title: Fee Structure
 * Swap Ethereum assets to CKB 
   * 0.3% swap fee paid in Ethereum assets
   * 0 crosschain fee
-  * 0 tip fee 
+  * 0 tipping fee 
 * Swap CKB to sUDT
   * 0.3% swap fee paid in CKB
   * 0 tip fee
@@ -18,7 +18,7 @@ title: Fee Structure
 * Swap Ethereum asset to its mirror asset on Nervos
   * 0 crosschain fee
 * Swap Ethereum mirror asset back to Ethereum
-  * 0.1% crosschain fee
+  * 0.1% cross-chain fee
 
 #### LPs
 
